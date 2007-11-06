@@ -1,5 +1,8 @@
 TODO:
  - Add some syntactic sugar to make timezone conversion easier
 
-0.01 Tuesday November 06 01:13:49 PST 2007:
+0.013 Tuesday November 06 02:51:05 PST 2007
+ - Minor documentation update
+
+0.010 Tuesday November 06 01:13:49 PST 2007:
  - Initial version

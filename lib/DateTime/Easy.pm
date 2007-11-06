@@ -9,11 +9,11 @@ DateTime::Easy - Quickly and easily create a DateTime object (by parsing almost 
 
 =head1 VERSION
 
-Version 0.01
+Version 0.013
 
 =cut
 
-our $VERSION = '0.01';
+our $VERSION = '0.013';
 
 =head1 SYNOPSIS
 
@@ -24,13 +24,13 @@ our $VERSION = '0.01';
     my $dt = DateTime::Easy->new("now");
 
     # Uses Date::Manip's coolness:
-    my $dt = DateTime::Easy->new("this month");
+    my $dt = DateTime::Easy->new("last monday");
 
     # ... but in 1969:
-    my $dt = DateTime::Easy->new("this month", year => 1969);
+    my $dt = DateTime::Easy->new("last monday", year => 1969);
 
     # ... at the 100th nanosecond:
-    my $dt = DateTime::Easy->new("this month", year => 1969, nanosecond => 100);
+    my $dt = DateTime::Easy->new("last monday", year => 1969, nanosecond => 100);
 
     # ... in EST: (This will NOT do a timezone conversion)
     my $dt = DateTime::Easy->new("last monday", year => 1969, nanosecond => 100, timezone => "US/Eastern");
@@ -63,6 +63,8 @@ You can pass the following in:
     minute      # A minute to override the result of parsing
     second      # A second to override the result of parsing
     truncate    # A truncation parameter (e.g. year, day, month, week, etc.)
+    timezone    # A timezone (e.g. US/Pacific, UTC, etc.)
+                # Either time_zone or timezone will work, but "time_zone" has precedence
 
     ... and anything else that you want to pass to the DateTime->new constructor
 
@@ -76,6 +78,7 @@ Furthermore, you can simply pass the value for "parse" as the first positional a
     # ...is the same as this:
     DateTime::Easy->new(parse => "today", year => 2008, truncate => "hour");
 
+Also, 
 =head1 EXPORT
 
 =head2 parse( ... )
@@ -86,7 +89,7 @@ Same syntax as above. See above for more information.
 
 Although I really like using DateTime for date/time handling, I was often frustrated by its inability to parse even the simplest of date/time strings.
 There does exist a wide variety of DateTime::Format::* modules, but they all have different interfaces and different capabilities.
-Coming from a Date::Manip background, I wanted something that gave me the power of ParseDate while still retaining control over DateTime's new constructor.
+Coming from a Date::Manip background, I wanted something that gave me the power of ParseDate while still returning a DateTime object.
 Most importantly, I wanted explicit control of the timezone setting at every step of the way. DateTime::Easy is the result.
 
 =head1 SEE ALSO
